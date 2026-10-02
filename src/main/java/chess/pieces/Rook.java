@@ -12,8 +12,18 @@ public class Rook extends Piece{
 
     @Override
     public boolean isValidMove(Position from, Position to, Board board ){
-        return from.row() == to.row()
+
+        if (from.equals(to)){
+            return false;
+        }
+
+        boolean moveStraight =
+            from.row() == to.row()
             || from.column() == to.column();
+
+        return moveStraight 
+            && board.isPathClear(from, to)
+            && board.canCaptureOrMoveTo(to, getColour());
 
     } 
 }

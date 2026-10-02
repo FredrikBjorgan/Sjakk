@@ -19,11 +19,11 @@ public abstract class Piece {
         return colour;
     }
 
-    public boolean isValdidMove(
+    public abstract boolean isValidMove(
 
         Position from,
         Position to,
         Board board
-    )
+    );
 
 }

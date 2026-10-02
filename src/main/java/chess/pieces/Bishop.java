@@ -1,21 +1,26 @@
-public class Bishop extends Piece{
+package chess.pieces;
 
-    public Bishop(Colour colour){
+import chess.Board;
+import chess.Colour;
+import chess.Position;
+
+public class Bishop extends Piece {
+
+    public Bishop(Colour colour) {
         super(colour);
     }
 
     @Override
-    public boolean isValdidMove(
-        Position from,
-        Position to,
-        Board board
-    ){
-    
-        return from.row() == to.row()
-        || from.column() == to.column();
+    public boolean isValidMove(Position from, Position to, Board board) {
 
-        Math.abs(from.row() - to.row())
-        ==
-        Math.abs(from.column() - to.column())
+        if (from.equals(to)) {
+            return false;
+        }
+
+        boolean movesDiagonally =
+                Math.abs(from.row() - to.row())
+                == Math.abs(from.column() - to.column());
+
+        return movesDiagonally && board.isPathClear(from, to);
     }
 }

@@ -8,9 +8,9 @@ public class Board {
 
     public Board () {
 
-        Square = new Square[8][8];
+        Square = new Piece[8][8];
 }
-    public piece getPiece(Position position) {
+    public Piece getPiece(Position position) {
 
         return Square[position.row()][position.column()];
     }
@@ -20,5 +20,32 @@ public class Board {
         Square[position.row()][position.column()] = piece;
     }
 
+public boolean isPathClear(Position from, Position to) {
 
+    int rowStep = Integer.compare(to.row(), from.row());
+    int columnStep = Integer.compare(to.column(), from.column());
+
+    int currentRow = from.row() + rowStep;
+    int currentColumn = from.column() + columnStep;
+
+    while (currentRow != to.row() || currentColumn != to.column()) {
+
+        if (Square[currentRow][currentColumn] != null) {
+            return false;
+        }
+
+        currentRow += rowStep;
+        currentColumn += columnStep;
+     }
+
+return true; };
+
+public boolean canCaptureOrMoveTo(Position position, Colour colour) {
+    Piece targetPiece = getPiece(position);
+
+    return targetPiece == null
+            || targetPiece.getColour() != colour;
 }
+
+    }
+
