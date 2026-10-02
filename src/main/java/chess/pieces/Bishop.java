@@ -21,6 +21,6 @@ public class Bishop extends Piece {
                 Math.abs(from.row() - to.row())
                 == Math.abs(from.column() - to.column());
 
-        return movesDiagonally && board.isPathClear(from, to);
+        return movesDiagonally && board.isPathClear(from, to) && board.canCaptureOrMoveTo(to, getColour());
     }
 }

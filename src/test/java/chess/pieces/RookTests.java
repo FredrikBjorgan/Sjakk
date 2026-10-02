@@ -95,4 +95,25 @@ public class RookTests {
         assertFalse(rook.isValidMove(from, target, board));
     }
 
+    @Test 
+    void rookCannotJumpOverPiece(){
+
+        Board board = new Board();
+
+        Rook rook = new Rook(Colour.WHITE);
+        Rook ownPiece = new Rook(Colour.WHITE);
+        Rook oponent = new Rook(Colour.BLACK);
+
+        Position from = new Position(0,0);
+        Position friendly = new Position(0,3);
+        Position target = new Position(0,5);
+
+        board.setPiece(from, rook);
+        board.setPiece(friendly, ownPiece);
+        board.setPiece(target, oponent);
+
+        assertFalse(rook.isValidMove(from, target, board));
+
+    }
+
 }
