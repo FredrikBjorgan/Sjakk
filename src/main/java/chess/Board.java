@@ -1,7 +1,5 @@
 package chess;
 
-import java.util.Queue;
-
 import chess.pieces.Bishop;
 import chess.pieces.King;
 import chess.pieces.Knight;
@@ -100,8 +98,5 @@ return true; };
                 setPiece(new Position(6,column), new Pawn(Colour.BLACK));
             }
             }  
-            
-            
-
     }
 
