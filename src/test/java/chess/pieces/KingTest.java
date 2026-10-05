@@ -102,3 +102,5 @@ public class KingTest {
         assertFalse(king.isValidMove(from, to, board));
     }
 }
+
+
