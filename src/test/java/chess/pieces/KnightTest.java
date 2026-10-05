@@ -102,7 +102,7 @@ public class KnightTest {
     }
 
     @Test 
-    void knightCanCaptureOwnPiece(){
+    void knightCantCaptureOwnPiece(){
 
          Board board = new Board();
          Knight knight = new Knight(Colour.WHITE);
