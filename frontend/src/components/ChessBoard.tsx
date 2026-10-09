@@ -7,6 +7,7 @@ export default function ChessBoard() {
         displaySquares,
         selectedSquare,
         currentTurn,
+        gameStatus,
         message,
         handleSquareClick,
     } = useChessGame();
@@ -20,6 +21,27 @@ export default function ChessBoard() {
                     ? "White to move"
                     : "Black to move"}
             </p>
+
+                                {gameStatus === "CHECK" && (
+                        <p className="move-message">
+                            Check!
+                        </p>
+                    )}
+
+                    {gameStatus === "CHECKMATE" && (
+                        <p className="move-message">
+                            Checkmate!{" "}
+                            {currentTurn === "WHITE"
+                                ? "Black wins!"
+                                : "White wins!"}
+                        </p>
+                    )}
+
+                    {gameStatus === "STALEMATE" && (
+                        <p className="move-message">
+                            Stalemate - draw!
+                        </p>
+                    )}
 
             <div className="chess-board">
                 {displaySquares.map((square) => (
@@ -45,6 +67,7 @@ export default function ChessBoard() {
                     </div>
                 ))}
             </div>
+            
 
             {message && (
                 <p className="move-message">

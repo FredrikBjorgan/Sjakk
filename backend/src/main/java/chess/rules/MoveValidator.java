@@ -127,6 +127,64 @@ public boolean wouldMoveLeaveKingInCheck(
     return kingInCheck;
 }
 
+public boolean hasAnyLegalMove(
+        Board board,
+        Colour colour
+) {
+
+    for (int fromRow = 0; fromRow < 8; fromRow++) {
+        for (int fromColumn = 0; fromColumn < 8; fromColumn++) {
+
+            Position from =
+                    new Position(fromRow, fromColumn);
+
+            Piece piece = board.getPiece(from);
+
+            if (piece == null) {
+                continue;
+            }
+
+            if (piece.getColour() != colour) {
+                continue;
+            }
+
+            for (int toRow = 0; toRow < 8; toRow++) {
+                for (int toColumn = 0; toColumn < 8; toColumn++) {
+
+                    Position to =
+                            new Position(toRow, toColumn);
+
+                    if (from.equals(to)) {
+                        continue;
+                    }
+
+                    Piece targetPiece = board.getPiece(to);
+
+                    if (targetPiece instanceof King) {
+                        continue;
+                    }
+
+                    if (!piece.isValidMove(from, to, board)) {
+                        continue;
+                    }
+
+                    if (
+                        !wouldMoveLeaveKingInCheck(
+                            board,
+                            from,
+                            to,
+                            colour
+                        )
+                    ) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}
 
 
 }

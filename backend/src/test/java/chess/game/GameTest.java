@@ -95,4 +95,47 @@ void whiteAndBlackCanMoveAlternately() {
     assertEquals(Colour.WHITE, game.getCurrentTurn());
 }
 
+@Test
+void foolsMateResultsInCheckmate() {
+
+    Game game = new Game();
+
+    // 1. f3
+    assertTrue(
+        game.movePiece(
+            new Position(1, 5),
+            new Position(2, 5)
+        )
+    );
+
+    // ... e5
+    assertTrue(
+        game.movePiece(
+            new Position(6, 4),
+            new Position(4, 4)
+        )
+    );
+
+    // 2. g4
+    assertTrue(
+        game.movePiece(
+            new Position(1, 6),
+            new Position(3, 6)
+        )
+    );
+
+    // ... Qh4#
+    assertTrue(
+        game.movePiece(
+            new Position(7, 3),
+            new Position(3, 7)
+        )
+    );
+
+    assertEquals(
+        GameStatus.CHECKMATE,
+        game.getGameStatus()
+    );
+}
+
 }

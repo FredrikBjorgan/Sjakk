@@ -11,6 +11,11 @@ export function useChessGame() {
     const [currentTurn, setCurrentTurn] =
         useState<"WHITE" | "BLACK">("WHITE");
 
+    const [gameStatus, setGameStatus] =
+    useState<"ACTIVE" | "CHECK" | "CHECKMATE" | "STALEMATE">(
+        "ACTIVE"
+    );    
+
     function fetchBoard() {
         fetch("/api/board")
             .then((response) => response.json())
@@ -23,9 +28,16 @@ export function useChessGame() {
             .then((data) => setCurrentTurn(data));
     }
 
+    function fetchGameStatus() {
+    fetch("/api/board/status")
+        .then((response) => response.json())
+        .then((data) => setGameStatus(data));
+}
+
     useEffect(() => {
         fetchBoard();
         fetchCurrentTurn();
+        fetchGameStatus();
     }, []);
 
     function handleSquareClick(square: BoardSquare) {
@@ -64,8 +76,8 @@ export function useChessGame() {
                 toColumn: square.column,
             }),
         })
-            .then((response) => response.json())
-            .then((moveWasValid) => {
+                        .then((response) => response.json())
+                         .then((moveWasValid) => {
 
                 if (moveWasValid) {
                     setMessage("");
@@ -77,6 +89,8 @@ export function useChessGame() {
 
                 setSelectedSquare(null);
             });
+
+            
     }
 
     const displaySquares = [...squares].sort((a, b) => {
@@ -91,7 +105,23 @@ export function useChessGame() {
         displaySquares,
         selectedSquare,
         currentTurn,
+        gameStatus,
         message,
         handleSquareClick,
     };
+
+    function resetGame() {
+
+    fetch("/api/board/reset", {
+        method: "POST",
+    }).then(() => {
+
+        setSelectedSquare(null);
+        setMessage("");
+
+        fetchBoard();
+        fetchCurrentTurn();
+        fetchGameStatus();
+    });
+}
 }

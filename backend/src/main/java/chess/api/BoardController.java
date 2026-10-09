@@ -1,6 +1,5 @@
 package chess.api;
 
-import chess.Position;
 import chess.pieces.Piece;
 import chess.*;
 
@@ -29,10 +28,15 @@ public class BoardController {
     }
 
     @GetMapping("/Turn")
-    public Colour getCurrentTurn(){
-        return game.getCurrentTurn();
-
+    public Colour getCurrentTurn() {
+    return game.getCurrentTurn();
     }
+
+    @GetMapping ("/Status")
+    public GameStatus getGameStatus(){
+        return game.getGameStatus();
+    }
+
 
     @GetMapping
     public List<BoardSquareResponse> getBoard() {

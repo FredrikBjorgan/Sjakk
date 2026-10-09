@@ -16,6 +16,12 @@ public class Board {
 
         Square = new Piece[8][8];
 }
+
+    public void clearBoard() {
+    Square = new Piece[8][8];
+}
+
+
     public Piece getPiece(Position position) {
 
         return Square[position.row()][position.column()];
@@ -114,7 +120,16 @@ return true; };
     setPiece(to, piece);
     setPiece(from, null);
 
+    if (
+    piece instanceof Pawn &&
+    (to.row() == 0 || to.row() == 7)
+) {
+    setPiece(
+        to,
+        new Queen(piece.getColour())
+    );
+}
     return true;
-    }
+}
 }
 
