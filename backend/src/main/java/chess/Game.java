@@ -1,6 +1,5 @@
 package chess;
 
-import chess.pieces.Piece;
 import chess.pieces.King;
 import chess.pieces.Piece;
 import chess.rules.MoveValidator;
@@ -30,6 +29,11 @@ public Colour getCurrentTurn() {
 }
 
 public boolean movePiece(Position from, Position to) {
+
+    GameStatus status = getGameStatus();
+    if (status == GameStatus.CHECKMATE || status == GameStatus.STALEMATE) {
+        return false;
+    }
 
     Piece piece = board.getPiece(from);
 

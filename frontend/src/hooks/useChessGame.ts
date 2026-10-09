@@ -23,7 +23,7 @@ export function useChessGame() {
     }
 
     function fetchCurrentTurn() {
-        fetch("/turn")
+        fetch("/api/board/turn")
             .then((response) => response.json())
             .then((data) => setCurrentTurn(data));
     }
@@ -83,6 +83,7 @@ export function useChessGame() {
                     setMessage("");
                     fetchBoard();
                     fetchCurrentTurn();
+                    fetchGameStatus();
                 } else {
                     setMessage("Invalid move");
                 }
@@ -101,15 +102,6 @@ export function useChessGame() {
         return a.column - b.column;
     });
 
-    return {
-        displaySquares,
-        selectedSquare,
-        currentTurn,
-        gameStatus,
-        message,
-        handleSquareClick,
-    };
-
     function resetGame() {
 
     fetch("/api/board/reset", {
@@ -124,4 +116,14 @@ export function useChessGame() {
         fetchGameStatus();
     });
 }
+
+    return {
+        displaySquares,
+        selectedSquare,
+        currentTurn,
+        gameStatus,
+        message,
+        handleSquareClick,
+        resetGame,
+    };
 }

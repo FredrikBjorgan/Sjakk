@@ -27,12 +27,12 @@ public class BoardController {
         return "Board API works!";
     }
 
-    @GetMapping("/Turn")
+    @GetMapping("/turn")
     public Colour getCurrentTurn() {
     return game.getCurrentTurn();
     }
 
-    @GetMapping ("/Status")
+    @GetMapping("/status")
     public GameStatus getGameStatus(){
         return game.getGameStatus();
     }
@@ -75,6 +75,11 @@ public class BoardController {
         }
 
         return squares;
+    }
+
+    @PostMapping("/reset")
+    public void resetGame() {
+        game.resetGame();
     }
 
     @PostMapping("/move")

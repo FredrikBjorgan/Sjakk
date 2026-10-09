@@ -10,11 +10,13 @@ export default function ChessBoard() {
         gameStatus,
         message,
         handleSquareClick,
+        resetGame,
     } = useChessGame();
 
     return (
         <div>
             <h2>Chess Board</h2>
+            <button onClick={resetGame}>New Game</button>
 
             <p className="current-turn">
                 {currentTurn === "WHITE"
