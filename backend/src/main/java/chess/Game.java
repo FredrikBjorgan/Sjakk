@@ -3,12 +3,16 @@ package chess;
 import chess.pieces.King;
 import chess.pieces.Piece;
 import chess.rules.MoveValidator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game{
 
 private final Board board;
 private Colour currentTurn;
 private final MoveValidator moveValidator;
+private final List<Piece> capturedByWhite = new ArrayList<>();
+private final List<Piece> capturedByBlack = new ArrayList<>();
 
 public Game (){
 
@@ -26,6 +30,23 @@ public Board getBoard() {
 
 public Colour getCurrentTurn() {
     return currentTurn;
+}
+
+public List<Piece> getCapturedByWhite() {
+    return List.copyOf(capturedByWhite);
+}
+
+public List<Piece> getCapturedByBlack() {
+    return List.copyOf(capturedByBlack);
+}
+
+public int getWhiteMaterialDifference() {
+    return capturedByWhite.stream().mapToInt(Piece::getValue).sum()
+            - capturedByBlack.stream().mapToInt(Piece::getValue).sum();
+}
+
+public int getBlackMaterialDifference() {
+    return -getWhiteMaterialDifference();
 }
 
 public boolean movePiece(Position from, Position to) {
@@ -77,6 +98,14 @@ public boolean movePiece(Position from, Position to) {
         return false;
     }
 
+    if (targetPiece != null) {
+        if (piece.getColour() == Colour.WHITE) {
+            capturedByWhite.add(targetPiece);
+        } else {
+            capturedByBlack.add(targetPiece);
+        }
+    }
+
     // Bytt spiller
     if (currentTurn == Colour.WHITE) {
         currentTurn = Colour.BLACK;
@@ -117,6 +146,8 @@ public GameStatus getGameStatus() {
 
     board.clearBoard();
     board.setStartPosition();
+    capturedByWhite.clear();
+    capturedByBlack.clear();
 
     currentTurn = Colour.WHITE;
 }

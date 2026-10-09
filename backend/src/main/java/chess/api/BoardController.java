@@ -38,6 +38,25 @@ public class BoardController {
     }
 
 
+    @GetMapping("/captured")
+    public CapturedPiecesResponse getCapturedPieces() {
+        return new CapturedPiecesResponse(
+                toCapturedResponses(game.getCapturedByWhite()),
+                toCapturedResponses(game.getCapturedByBlack()),
+                game.getWhiteMaterialDifference(),
+                game.getBlackMaterialDifference()
+        );
+    }
+
+    private List<CapturedPieceResponse> toCapturedResponses(List<Piece> pieces) {
+        return pieces.stream()
+                .map(piece -> new CapturedPieceResponse(
+                        piece.getClass().getSimpleName(),
+                        piece.getColour(),
+                        piece.getValue()))
+                .toList();
+    }
+
     @GetMapping
     public List<BoardSquareResponse> getBoard() {
 

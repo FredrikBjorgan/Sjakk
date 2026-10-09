@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { BoardSquare } from "../types/BoardSquare";
+import type { CapturedPiece, CapturedPiecesResponse } from "../types/CapturedPiece";
 
 export function useChessGame() {
     const [squares, setSquares] = useState<BoardSquare[]>([]);
@@ -7,6 +8,10 @@ export function useChessGame() {
         useState<BoardSquare | null>(null);
 
     const [message, setMessage] = useState<string>("");
+    const [capturedByWhite, setCapturedByWhite] = useState<CapturedPiece[]>([]);
+    const [capturedByBlack, setCapturedByBlack] = useState<CapturedPiece[]>([]);
+    const [whiteMaterialDifference, setWhiteMaterialDifference] = useState(0);
+    const [blackMaterialDifference, setBlackMaterialDifference] = useState(0);
 
     const [currentTurn, setCurrentTurn] =
         useState<"WHITE" | "BLACK">("WHITE");
@@ -34,10 +39,28 @@ export function useChessGame() {
         .then((data) => setGameStatus(data));
 }
 
+    function fetchCapturedPieces() {
+        fetch("/api/board/captured")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Could not load captured pieces");
+                }
+                return response.json();
+            })
+            .then((data: CapturedPiecesResponse) => {
+                setCapturedByWhite(data.capturedByWhite);
+                setCapturedByBlack(data.capturedByBlack);
+                setWhiteMaterialDifference(data.whiteMaterialDifference);
+                setBlackMaterialDifference(data.blackMaterialDifference);
+            })
+            .catch(() => setMessage("Could not load captured pieces"));
+    }
+
     useEffect(() => {
         fetchBoard();
         fetchCurrentTurn();
         fetchGameStatus();
+        fetchCapturedPieces();
     }, []);
 
     function handleSquareClick(square: BoardSquare) {
@@ -84,6 +107,7 @@ export function useChessGame() {
                     fetchBoard();
                     fetchCurrentTurn();
                     fetchGameStatus();
+                    fetchCapturedPieces();
                 } else {
                     setMessage("Invalid move");
                 }
@@ -114,6 +138,7 @@ export function useChessGame() {
         fetchBoard();
         fetchCurrentTurn();
         fetchGameStatus();
+        fetchCapturedPieces();
     });
 }
 
@@ -122,6 +147,10 @@ export function useChessGame() {
         selectedSquare,
         currentTurn,
         gameStatus,
+        capturedByWhite,
+        capturedByBlack,
+        whiteMaterialDifference,
+        blackMaterialDifference,
         message,
         handleSquareClick,
         resetGame,
