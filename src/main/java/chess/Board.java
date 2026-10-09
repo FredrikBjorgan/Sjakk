@@ -98,5 +98,23 @@ return true; };
                 setPiece(new Position(6,column), new Pawn(Colour.BLACK));
             }
             }  
+
+            public boolean movePiece(Position from, Position to) {
+
+    Piece piece = getPiece(from);
+
+    if (piece == null) {
+        return false;
     }
+
+    if (!piece.isValidMove(from, to, this)) {
+        return false;
+    }
+
+    setPiece(to, piece);
+    setPiece(from, null);
+
+    return true;
+    }
+}
 
