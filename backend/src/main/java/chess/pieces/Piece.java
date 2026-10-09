@@ -8,10 +8,13 @@ public abstract class Piece {
 
 
     private final Colour colour;
+    private final int value;
 
-    public Piece(Colour colour){
+
+    public Piece(Colour colour, int value){
 
         this.colour = colour;
+        this.value = value;
     }
 
     public Colour getColour(){
@@ -25,5 +28,9 @@ public abstract class Piece {
         Position to,
         Board board
     );
+
+    public int getValue(){
+        return value;
+    }
 
 }

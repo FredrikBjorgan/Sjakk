@@ -7,7 +7,7 @@ import chess.Position;
 public class Pawn extends Piece{
 
     public Pawn(Colour colour){
-        super(colour);
+        super(colour, 1);
     }
 
     

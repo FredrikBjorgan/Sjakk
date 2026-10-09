@@ -7,7 +7,7 @@ import chess.Position;
 public class Bishop extends Piece {
 
     public Bishop(Colour colour) {
-        super(colour);
+        super(colour, 3);
     }
 
     @Override
