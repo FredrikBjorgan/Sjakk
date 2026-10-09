@@ -18,7 +18,7 @@ export function useChessGame() {
     }
 
     function fetchCurrentTurn() {
-        fetch("/api/board/turn")
+        fetch("/turn")
             .then((response) => response.json())
             .then((data) => setCurrentTurn(data));
     }
