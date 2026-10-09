@@ -1,0 +1,15 @@
+chess\pieces\Pawn.class
+chess\ChessApplication.class
+chess\pieces\Knight.class
+chess\pieces\Queen.class
+chess\pieces\King.class
+chess\api\MoveRequest.class
+chess\pieces\Bishop.class
+chess\api\BoardSquareResponse.class
+chess\Game.class
+chess\Colour.class
+chess\api\BoardController.class
+chess\Board.class
+chess\pieces\Piece.class
+chess\pieces\Rook.class
+chess\Position.class

@@ -1,0 +1,17 @@
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\api\BoardController.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\api\BoardSquareResponse.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\api\MoveRequest.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\Board.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\ChessApplication.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\Colour.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\Game.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\Move.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\Bishop.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\King.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\Knight.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\Pawn.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\Piece.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\Queen.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\pieces\Rook.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\Position.java
+C:\Users\fredr\Documents\ChatGPT\Chess\backend\src\main\java\chess\rules\MoveValidator.java

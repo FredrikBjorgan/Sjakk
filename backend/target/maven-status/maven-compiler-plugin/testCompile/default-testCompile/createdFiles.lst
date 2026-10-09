@@ -1,0 +1,8 @@
+chess\game\GameTest.class
+chess\pieces\KingTest.class
+chess\pieces\QueenTest.class
+chess\pieces\KnightTest.class
+chess\pieces\PawnTest.class
+chess\pieces\RookTests.class
+chess\board\BoardTest.class
+chess\pieces\BishopTest.class
